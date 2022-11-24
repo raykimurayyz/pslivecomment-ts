@@ -3,4 +3,10 @@ function say(word: String): void {
     console.log(word);
 }
 
-export { say };
+interface PlatformService {
+    listen: Function,
+    send: Function,
+    receive: Function
+}
+
+export { say, PlatformService };
