@@ -11,7 +11,7 @@ enum operationType {
     NOTICE_LISTEN_RESP = 5,
     // 订阅频道操作-请求
     FOLLOW_CHANNEL_REQ = 7,
-    // 订阅平道操作-应答
+    // 订阅频道操作-应答
     FOLLOW_CHANNEL_RESP = 8,
 }
 

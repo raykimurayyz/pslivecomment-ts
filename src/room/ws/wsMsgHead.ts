@@ -6,11 +6,11 @@ class wsMsgHead {
     private headLength: number;
     private formatType: bodyFormatType;
     private operation: operationType;
-    private data: String;
+    private data: string;
 
-    constructor(formatType: bodyFormatType, operation: operationType, data: String) {
+    constructor(formatType: bodyFormatType, operation: operationType, data: string) {
         if (data.length <= 0) {
-            throw new Error("sand data cannot be empty!");
+            throw new Error("sand data CAN NOT be empty!");
         }
 
         this.formatType = formatType;
@@ -31,10 +31,16 @@ class wsMsgHead {
         return this;
     }
 
+
+    public parse(): string {
+        
+        return '';
+    }
+
     public format(len: number, pad: number): Array<number> {
         const str = len.toString(16).padStart(pad, '0');
-        str.sli
 
-        return new Array;
+        return new Array();
     }
+
 }

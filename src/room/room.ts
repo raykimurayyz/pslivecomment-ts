@@ -2,7 +2,7 @@
 /**
  * 聊天室的接口类
  */
-interface room {
+interface Room {
 
     /**
      * 链接到聊天室
@@ -13,7 +13,7 @@ interface room {
      * 收到聊天室消息
      * @param data 消息体
      */
-    receiveMsg(data: Buffer): String;
+    receiveMsg(data: Buffer): string;
 
     /**
      * 链接到聊天室
@@ -21,3 +21,5 @@ interface room {
     close(): void;
 
 }
+
+export default Room
