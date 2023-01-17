@@ -8,7 +8,7 @@ process.on('uncaughtException', logger.error);
 // read properties
 new Promise((resolve, reject) => {
     const properties = require("properties");
-    properties.parse("source/application.properties",
+    properties.parse("resource/application.properties",
         { path: true },
         (error: any, obj: any) => {
             if (error) {
