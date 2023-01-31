@@ -36,6 +36,20 @@
 │  └─ main.ts     // 启动入口
 ```
 
+## 关于Docker
+
+### 创建容器
+
+```bash
+> docker build 
+```
+
+### 运行容器
+
+```bash
+> docker run
+```
+
 ## 感谢
 
 本项目是基于[Tilerphy/ps4broadcast](https://github.com/Tilerphy/ps4broadcast)项目，剥离其弹幕功能的ts重构

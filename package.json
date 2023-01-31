@@ -24,7 +24,6 @@
   "dependencies": {
     "log4js": "^6.7.1",
     "net": "^1.0.2",
-    "properties": "^1.2.1",
-    "ramda": "^0.28.0"
+    "properties": "^1.2.1"
   }
 }
