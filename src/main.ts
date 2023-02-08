@@ -29,9 +29,6 @@ new Promise((resolve, reject) => {
             .create(ret)
             .listen()
     })
-    .then(() => {
-        // new TestIrc();
-    })
     .catch(err => {
         logger.error(err);
     });
