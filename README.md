@@ -41,13 +41,18 @@
 ### 创建容器
 
 ```bash
-> docker build 
+> docker build -t ${tag} ./
 ```
 
 ### 运行容器
 
 ```bash
-> docker run
+> docker run \
+          -d \
+          --name pslivecomment \
+          -p 6667:6667 \
+          -v ${your_path}/application.properties:/resource/application.properties
+          ${tag}
 ```
 
 ## 感谢
