@@ -2,7 +2,7 @@
 /**
  * 聊天室的接口类
  */
-interface Room {
+export default interface Room {
 
     /**
      * 链接到聊天室
@@ -21,5 +21,3 @@ interface Room {
     close(): void;
 
 }
-
-export default Room

@@ -2,7 +2,7 @@
 /**
  * 数据类型
  */
-enum bodyFormatType {
+export const enum BodyFormatType {
     // 字符串
     STRING = 0,
     // 对象
@@ -10,5 +10,3 @@ enum bodyFormatType {
     // 压缩
     GZIP = 3,
 }
-
-export { bodyFormatType }

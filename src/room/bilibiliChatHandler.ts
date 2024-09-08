@@ -1,32 +1,42 @@
+
 import { Socket, connect } from "net";
 import { inflate } from "zlib";
+
 import logger from '../util/logger'
+import ChatHandler from './chatHandler';
 import TwitchEmulator from "../twitchEmulator";
-import Room from './room'
 
 /**
  * bilibili聊天室的实现类
  */
-class RoomBilibili implements Room {
+export default class BilibiliChatHandler implements ChatHandler {
 
     private uid: number = new Date().getTime();
-    private rid: string;
-    private sock!: Socket;
-    private emulator: TwitchEmulator;
+    private roomId: string;
+    private sock: Socket;
+    private emulator!: TwitchEmulator;
     private interval!: NodeJS.Timeout;
     private buf!: Buffer | null;
 
-    constructor(roomId: string, emulator: TwitchEmulator) {
-        this.rid = roomId;
-        this.emulator = emulator;
+    constructor(roomId: string) {
+        this.roomId = roomId;
         this.sock = connect(2243, "chat.bilibili.com")
             .on("connect", this.connect)
-            .on("data", this.receiveMsg);
-        // this.heartBeat();
+            .on("data", this.receiveMsg)
+            .on('close', () => {
+                logger.info('已断开与BiliBili聊天服务器的连接');
+            })
+            .on('error', (error) => {
+                logger.error('BiliBili弹幕服务器连接错误:', error);
+            });
+    }
+
+    bindTwitchEmulator(emulator: TwitchEmulator): void {
+        this.emulator = emulator;
     }
 
     public connect = (): void => {
-        logger.info("connected bilibili success");
+        logger.info("已连接到BiliBili聊天服务器");
         this.heartBeat();
     }
 
@@ -65,7 +75,7 @@ class RoomBilibili implements Room {
             });
             return "";
         } catch (error) {
-            logger.error("close bilibili");
+            logger.error(`close bilibili, error:${error}`);
             throw error;
         }
     }
@@ -83,7 +93,7 @@ class RoomBilibili implements Room {
 
     public heartBeat = (): void => {
         try {
-            const dataBuffer = Buffer.from(`{"roomid":${this.rid},"uid":${this.uid}}`);
+            const dataBuffer = Buffer.from(`{"roomid":${this.roomId},"uid":${this.uid}}`);
             const headerBuffer = Buffer.from([0, 0, 0, dataBuffer.length + 16, 0, 16, 0, 1, 0, 0, 0, 7, 0, 0, 0, 1]);
             const heartBeat = Buffer.from([0, 0, 0, 16, 0, 16, 0, 1, 0, 0, 0, 2, 0, 0, 0, 1]);
             let packageBuffer = Buffer.alloc(dataBuffer.length + headerBuffer.length);
@@ -158,5 +168,3 @@ class RoomBilibili implements Room {
         }
     }
 }
-
-export default RoomBilibili

@@ -1,19 +1,17 @@
 import { Socket } from 'net'
-import logger from './tool/logger'
+import logger from './util/logger'
 
-class TestIrc {
+export default class TestIrc {
 
     constructor() {
         const client = new Socket();
-        client.connect(6667, '127.0.0.1', function () {
+        client.connect(6667, '127.0.0.1', () => {
             logger.info('client Connected');
             client.write('Hello, server! Love, Client.');
-        });
+        }).on("data", msg => { logger.info(msg) });
     }
 
     public connect() {
         logger.info('client connecting');
     }
 }
-
-export default TestIrc

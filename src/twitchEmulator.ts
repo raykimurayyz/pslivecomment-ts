@@ -1,7 +1,7 @@
 import { Socket } from 'net'
-import logger from './tool/logger'
+import logger from './util/logger'
 
-class TwitchEmulator {
+export default class TwitchEmulator {
     private tid: string = '1234567';
     private pinger: any = -1;
     private sock: Socket;
@@ -65,5 +65,3 @@ class TwitchEmulator {
     }
 
 }
-
-export default TwitchEmulator;

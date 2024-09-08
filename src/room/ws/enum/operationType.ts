@@ -1,18 +1,16 @@
 
 /**
- * 操作类型
+ * 消息的类型
  */
-enum operationType {
-    // 心跳包操作-请求
+export const enum OperationType {
+    // 客户端发送的心跳包(30秒发送一次)
     HEART_BEAT_REQ = 2,
-    // 心跳包操作-应答
+    // 服务器收到心跳包的回复
     HEART_BEAT_RESP = 3,
-    // 消息操作-接收
+    // 服务器推送的弹幕消息包
     NOTICE_LISTEN_RESP = 5,
-    // 订阅频道操作-请求
+    // 客户端发送的鉴权包(客户端发送的第一个包)
     FOLLOW_CHANNEL_REQ = 7,
-    // 订阅频道操作-应答
+    // 服务器收到鉴权包后的回复
     FOLLOW_CHANNEL_RESP = 8,
 }
-
-export { operationType }
